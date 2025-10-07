@@ -1,0 +1,48 @@
+import React, { useState } from 'react';
+
+const PlayerCard = ({player, setAvailableBalance,availableBalance}) => {
+    const [isSelected,setIsSelected]= useState(false)
+
+    const handleSelected = (playerData) => {
+        const playerPrice = parseInt(playerData.price)
+        if(availableBalance < playerPrice){
+        alert("Not Enough Coins")
+        return
+      } 
+      setIsSelected(true)
+        setAvailableBalance(availableBalance-playerPrice)
+    }
+    return (
+        <div className="card bg-base-100 shadow-sm p-4">
+  <figure>
+    <img
+      src={player.player_image}
+      alt="Shoes" />
+  </figure>
+  <div className="mt-4">
+    <h2 className="card-title">🙅 {player.player_name}</h2>
+    <div className='flex justify-between mt-4 border-b-1 pb-2 border-gray-500'>
+        <span>🏳️ {player.player_country}</span>
+        <button className='btn'>{player.playing_role}</button>
+    </div>
+
+        <div className='flex justify-between font-bold mt-4'>
+            <span>Rating</span>
+            <span>{player.rating}</span>
+        </div>
+
+        <div className='flex justify-between mt-4'>
+            <span className='font-bold'>{player.batting_style}</span>
+            <span>{player.bowling_style}</span>
+        </div>
+
+    <div className="card-actions mt-3 flex justify-between items-center">
+        <p className='font-bold'>Price: ${player.price}</p>
+      <button disabled={isSelected} onClick={() => {handleSelected(player)}} className="btn">{isSelected===true?"selected":"Choose Player"}</button>
+    </div>
+  </div>
+            </div>
+    );
+};
+
+export default PlayerCard;
