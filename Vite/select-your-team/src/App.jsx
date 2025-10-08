@@ -1,6 +1,7 @@
 
 import { Suspense, useState } from 'react'
 import './App.css'
+  import { ToastContainer } from 'react-toastify';
 
 import AvailablePlayers from './components/AvailablePlayers/AvailablePlayers'
 import Navbar from './components/Navbar/Navbar'
@@ -49,7 +50,7 @@ const removePlayer = (p) => {
       
 
       
-
+      <ToastContainer/>
     </>
   )
 }
